@@ -332,3 +332,31 @@ class FeatureContext
 }
 
 ```
+
+Development
+-----------
+
+To develop locally, you'll need the following:
+
+- php7.0+
+- composer (package manager)
+
+Install project dependencies using composer:
+
+```
+composer install
+```
+
+Unit tests can be triggered using the following command:
+
+```
+./vendor/bin/phpunit -c tests
+```
+
+Behaviour tests
+
+```
+./vendor/bin/behat -c behat.yml
+```
+
+More information on how to run tests can be found in the Makefile or docker-compose file.
