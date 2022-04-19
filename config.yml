@@ -1,0 +1,23 @@
+config:
+  dockerfile: /home/vimal/Applications/hmrc-development-environment/hmrc/test-repo/Dockerfile
+  project_name: test-repo
+
+repository:
+  yaml:
+    
+services:
+
+
+steps:
+  analysis:
+    - bundle exec rubocop -R app spec --format simple
+    - bundle exec rubycritic --path ./analysis --minimum-score 80 --no-browser
+  setup_db:
+    - bundle exec rails db:create
+    - bundle exec rails db:schema:load
+  test:
+    - bundle exec rspec
+  security:
+    - bundle exec brakeman --exit-on-error
+  audit:
+    - bundle audit check --update
